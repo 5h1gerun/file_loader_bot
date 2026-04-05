@@ -141,14 +141,9 @@ def _fit_workbook_to_single_page(xlsx_path: Path) -> None:
     modified = False
     for sheet in workbook.worksheets:
         page_setup = sheet.page_setup
-        if (
-            page_setup.fitToWidth != 1
-            or page_setup.fitToHeight != 1
-            or not page_setup.fitToPage
-        ):
+        if page_setup.fitToWidth != 1 or page_setup.fitToHeight != 1:
             page_setup.fitToWidth = 1
             page_setup.fitToHeight = 1
-            page_setup.fitToPage = True
             modified = True
 
         props = sheet.sheet_properties.pageSetUpPr
